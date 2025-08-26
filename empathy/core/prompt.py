@@ -196,11 +196,9 @@ def _call_together(messages: List[Dict[str, str]], model: str, seed: int) -> str
     }
     try:
         print("Calling Together...")
-        print(payload)
         resp = requests.post(url, headers=headers, json=payload, timeout=120)
         resp.raise_for_status()
         resp_json = resp.json()
-        print(resp_json)
         return resp_json["choices"][0]["message"]["content"]
     except Exception as e:
         raise RuntimeError(f"LLM call failed (together): {e}")
@@ -233,7 +231,6 @@ def _call_anthropic(query: str, system: Optional[str], model: str, seed: int) ->
                 }
             ],
         )
-        print(message)
         return message.content[0].text  # type: ignore[index]
     except Exception as e:
         raise RuntimeError(f"LLM call failed (anthropic): {e}")
