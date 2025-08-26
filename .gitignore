@@ -1,0 +1,8 @@
+**/*.pyc
+
+runs/*
+empathy/analysis/*
+local_results/*
+
+.PROVIDER_KEYS
+
